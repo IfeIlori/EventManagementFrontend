@@ -1,11 +1,12 @@
-import axios from 'axios';
+
 import React, { useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Select from "react-select"
 import { signup } from '../services/api';
 
 
 const SignUpForm = () => {
+  const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [userDetails, setUserDetails] = useState({
     name:"",
@@ -44,8 +45,9 @@ const SignUpForm = () => {
     }
 
     try {
-      await signup(finalUserDetails);
+      const path = await signup(finalUserDetails);
       setLoading(false)
+      navigate(path)
     } catch (error) {
       console.log("Error", error)
       setLoading(false)

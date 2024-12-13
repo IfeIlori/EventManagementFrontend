@@ -15,8 +15,9 @@ const LoginForm = () => {
     e.preventDefault()
     setLoading(true)
     try{
-      await login(userDetails)
+      const path = await login(userDetails)
       setLoading(false)
+      navigate(path)
     }catch(err){
       setLoading(false)
       console.log(err)

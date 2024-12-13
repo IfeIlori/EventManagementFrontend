@@ -15,9 +15,9 @@ export const login = async (details) => {
     localStorage.setItem("token", token); // Store token in localStorage
     localStorage.setItem("User", JSON.stringify(user)); // Return user data
     if (user.role === "admin") {
-      window.location.href = "/admin"
+      return "/admin"
     } else {
-      window.location.href = "/home"
+      return "/home"
     }
   } catch (error) {
     console.error("Login error:", error);
