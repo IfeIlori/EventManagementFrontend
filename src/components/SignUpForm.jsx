@@ -6,6 +6,7 @@ import { signup } from '../services/api';
 
 
 const SignUpForm = () => {
+  const [loading, setLoading] = useState(false)
   const [userDetails, setUserDetails] = useState({
     name:"",
     email:"",
@@ -27,7 +28,9 @@ const SignUpForm = () => {
 
   const handleSubmit = async (e) =>{
     e.preventDefault()
+    setLoading(true)
     if(userDetails.password != userDetails.confirmPassword){
+      setLoading(false)
       alert("Passwords don't match")
       return
     }
@@ -41,9 +44,11 @@ const SignUpForm = () => {
     }
 
     try {
-      signup(finalUserDetails);
+      await signup(finalUserDetails);
+      setLoading(false)
     } catch (error) {
       console.log("Error", error)
+      setLoading(false)
     }
     
   }
@@ -114,7 +119,7 @@ const SignUpForm = () => {
           />
         </div>
 
-        <button type='submit' className="bg-black text-white p-3 rounded-md">Signup</button>
+        <button type='submit' className="bg-black text-white p-3 rounded-md" disabled={loading}>{loading ? "Loading..." : "Signup"}</button>
         <p className="text-center">
           Already have an account?
           <Link to="/" className="font-bold">

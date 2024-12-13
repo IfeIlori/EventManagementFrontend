@@ -4,17 +4,21 @@ import axios from "axios"
 import {login} from '../services/api';
 
 const LoginForm = () => {
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const [userDetails, setUserDetails] = useState({
     email:"",
     password:""
   })
 
-  const handleSubmit = (e) =>{
-      e.preventDefault()
+  const handleSubmit = async (e) =>{
+    e.preventDefault()
+    setLoading(true)
     try{
-      login(userDetails)
+      await login(userDetails)
+      setLoading(false)
     }catch(err){
+      setLoading(false)
       console.log(err)
     }
   }
@@ -49,7 +53,7 @@ const LoginForm = () => {
           />
         </div>
         <Link className="text-black text-end">Forgot your password?</Link>
-        <button className="bg-black text-white p-3 rounded-md">Login</button>
+        <button className="bg-black text-white p-3 rounded-md" disabled={loading}>{loading ? "Loading..." : "Login"}</button>
         <p className="text-center">
           Don't have an account?{" "}
           <Link to="/signup" className="font-bold">

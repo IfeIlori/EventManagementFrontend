@@ -45,7 +45,7 @@ export const logout = () => {
   localStorage.removeItem("User"); // Clear user data from localStorage
   setTimeout(() => {
     window.location.href = "/";  // Redirect to login page
-  }, 2000); // 2-second delay
+  }, 1000); // 2-second delay
 };
 
 export default api
