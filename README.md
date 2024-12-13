@@ -1,8 +1,44 @@
-# React + Vite
+# EvenTix - Event Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+EvenTix is a full-stack web application for managing campus events, allowing users to browse, RSVP, and manage their event preferences. The system features both user and admin interfaces with real-time event management capabilities.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User Authentication (Login/Signup)
+- Event Management
+  - Browse upcoming events
+  - RSVP to events
+  - View event details
+  - Cancel event registrations
+- Calendar View
+- User Preferences
+- Admin Dashboard
+  - Create new events
+  - Manage event capacity
+  - Track registrations
+
+## 🛠 Tech Stack
+
+### Frontend
+- React.js with Vite
+- TailwindCSS for styling
+- React Router for navigation
+- Axios for API requests
+- React Select for multi-select components
+- React Icons for UI elements
+
+### Backend
+- Node.js with Express
+- PostgreSQL database
+- bcryptjs for password hashing
+- CORS for cross-origin resource sharing
+
+## 📦 Installation
+
+### Prerequisites
+- Node.js (v14 or higher)
+- PostgreSQL database
+- npm or yarn package manager
+
+### Frontend Setup
+1. Navigate to the frontend directory:
