@@ -6,7 +6,7 @@ import api from "../services/api";
 const UserEvents = () => {
   const [events, setEvents] = useState([]);
   const [userId, setUserId] = useState(null);
-
+  const [cancel, setCancel] = useState(false);
   useEffect(() => {
     const userDetails = localStorage.getItem("User");
     if (userDetails) {
@@ -31,11 +31,17 @@ const UserEvents = () => {
   };
 
   const cancelEvent = async (event) => {
-    console.log("event", event);
+    // console.log("event", event);
+    setCancel(true);
     try {
-      const response = await api.delete(`/api/events/cancelEvent/${event.id}`);
-      setEvents(response.data.events);
+      api.delete(`/api/events/cancelEvent/${event.rsvp_id}`).then((res) => {
+        setCancel(false);
+        alert("Event cancelled successfully");
+        setEvents(res.data.events);
+      });
     } catch (error) {
+      setCancel(false);
+      alert("Error cancelling event");
       console.error("Error canceling event:", error);
     }
   };
@@ -48,7 +54,7 @@ const UserEvents = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {events.length > 0 ? (
             events.map((event) => (
-              <EventsCard key={event.id} event={event} onClick={cancelEvent} />
+              <EventsCard key={event.id} event={event} onClick={cancelEvent} cancel={cancel} />
             ))
           ) : (
             <p className="text-gray-500">
