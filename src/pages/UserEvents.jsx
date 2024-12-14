@@ -36,8 +36,8 @@ const UserEvents = () => {
     try {
       api.delete(`/api/events/cancelEvent/${event.rsvp_id}`).then((res) => {
         setCancel(false);
-        alert("Event cancelled successfully");
-        setEvents(res.data.events);
+        alert(res.data.message);
+        window.location.reload();
       });
     } catch (error) {
       setCancel(false);
@@ -52,7 +52,7 @@ const UserEvents = () => {
       <div className="container mx-auto p-4">
         <h1 className="text-2xl font-bold">My Events</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {events.length > 0 ? (
+          {events?.length > 0 ? (
             events.map((event) => (
               <EventsCard key={event.id} event={event} onClick={cancelEvent} cancel={cancel} />
             ))
