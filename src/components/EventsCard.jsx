@@ -11,7 +11,7 @@ const EventsCard = ({event, navigate, onClick}) => {
       <p className="text-sm text-gray-600">
         {event.description}
       </p>
-     {onClick?<button onClick={() => onClick(event.id)} className="mt-3 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+     {onClick?<button onClick={() => onClick(event)} className="mt-3 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
         Cancel
       </button>: <button onClick={handleRSVP} className="mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
         RSVP

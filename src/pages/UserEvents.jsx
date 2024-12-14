@@ -30,10 +30,10 @@ const UserEvents = () => {
     }
   };
 
-  const cancelEvent = async (eventId) => {
-    console.log("eventId", eventId);
+  const cancelEvent = async (event) => {
+    console.log("event", event);
     try {
-      const response = await api.delete(`/api/events/cancelEvent/${eventId}`);
+      const response = await api.delete(`/api/events/cancelEvent/${event.id}`);
       setEvents(response.data.events);
     } catch (error) {
       console.error("Error canceling event:", error);
