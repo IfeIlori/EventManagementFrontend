@@ -13,7 +13,7 @@ const AdminPage = () => {
     type: "",
     capacity: "",
     available_seats: "",
-    created_by: "",
+    created_by: JSON.parse(localStorage.getItem("User")).id,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,13 +27,14 @@ const AdminPage = () => {
   // Handle form submission to create a new event
   const handleCreateEvent = async (e) => {
     e.preventDefault();
+    console.log(eventDetails)
     setIsSubmitting(true);
 
     try {
       const response = await api.post("/api/events/createEvent", eventDetails);
       if (response.data.message === "Event created successfully") {
         alert("Event created successfully!");
-        etIsSubmitting(false);
+        setIsSubmitting(false);
         // Reset the form
         setEventDetails({
           name: "",
@@ -48,6 +49,7 @@ const AdminPage = () => {
         s
       }
     } catch (error) {
+      setIsSubmitting(false)
       console.error("Error creating event:", error);
       alert("Error creating event. Please try again.");
     } finally {
