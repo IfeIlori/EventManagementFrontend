@@ -31,10 +31,10 @@ const UserEvents = () => {
   };
 
   const cancelEvent = async (event) => {
-    // console.log("event", event);
+    console.log("event", event);
     setCancel(true);
     try {
-      api.delete(`/api/events/cancelEvent/${event.rsvp_id}`).then((res) => {
+      api.delete(`/api/events/cancelEvent/${event.event_id}`).then((res) => {
         setCancel(false);
         alert(res.data.message);
         window.location.reload();
